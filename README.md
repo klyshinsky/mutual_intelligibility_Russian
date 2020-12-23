@@ -19,7 +19,7 @@
 
 ### Обработка данных и построение графиков
 
-Для построения графиков, приведенных в статье, использовался скрипт в Jupyter Notebook, находящийся [здесь](https://github.com/klyshinsky/mutual_intelligibility_Russian/blob/main/draw_figure_intelligibility-4Github.ipynb]. Версия в htmlнаходится (здесь)[https://github.com/klyshinsky/mutual_intelligibility_Russian/blob/main/draw_figure_intelligibility-4Github.html), но в ней приведена только часть рисунков.  
+Для построения графиков, приведенных в статье, использовался скрипт в Jupyter Notebook, находящийся [здесь](https://github.com/klyshinsky/mutual_intelligibility_Russian/blob/main/draw_figure_intelligibility-4Github.ipynb). Версия в htmlнаходится [здесь](https://github.com/klyshinsky/mutual_intelligibility_Russian/blob/main/draw_figure_intelligibility-4Github.html), но в ней приведена только часть рисунков.  
 
 
 
