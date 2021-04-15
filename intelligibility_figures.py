@@ -268,7 +268,7 @@ def show_age(field: str, test: str, user_data, axes):
     moveLines(axes, offset)
     _ = moveCollection(axes, -1, 12/72., "left")
     _ = moveCollection(axes, -2, 12/72., "left")
-    axes.set_ylabel('Intelligibility')
+    axes.set_ylabel('Понимаемость')
     
 def drawForeign(test_no, user_data, axes):
     if test_no == 'All':
@@ -285,6 +285,7 @@ def drawForeign(test_no, user_data, axes):
     sns.pointplot(x='known_langs', y='mean_mark', data = dat, markers='x', color='r', 
                   errwidth=1.5, capsize=0.2, alpha=0.5, join=False, axes=axes)
     sns.swarmplot(x='known_langs', y='mean_mark', data = dat, ax=axes)
+    axes.set_ylabel('Понимаемость')
     
 def makeWords(langs, texts, set_no):
     words=pd.DataFrame()
@@ -540,7 +541,7 @@ def showIntel(sameness, user_data, qu_data, text_frame, axes, fig):
     all_resn, all_tests = processIntelligibility(qu_data, text_frame)
     intellig = pd.DataFrame()
     
-    axes.clear()
+#    axes.clear()
 
     mean2 = drawAnIntel(user_data, all_resn, intellig, sameness, 2, 40, axes, 'brief')
     mean1 = drawAnIntel(user_data, all_resn, intellig, sameness, 1, 43, axes)
@@ -568,8 +569,8 @@ def showIntel(sameness, user_data, qu_data, text_frame, axes, fig):
     axes.set_xlabel("Доля слов данного типа")
     display(intellig)
     
-    same2fig = {"Same": "_1", "Similar":"_2", "No analogues": "_3", "False Friends":"_4"}
-    fig.savefig('img_res/Fig_5'+same2fig.get(sameness, "_X")+'_correlation_on_type.png', dpi = 600)
+    # same2fig = {"Same": "_1", "Similar":"_2", "No analogues": "_3", "False Friends":"_4"}
+    # fig.savefig('img_res/Fig_5'+same2fig.get(sameness, "_X")+'_correlation_on_type.png', dpi = 600)
     
     
     print("Correlation by tests")
@@ -587,7 +588,15 @@ def showIntel(sameness, user_data, qu_data, text_frame, axes, fig):
         t = t.dropna()
         print(intellig.index[i], pearsonr(t.iloc[:, 0].dropna(),
                                           t.iloc[:, 1].dropna())[0])
-    
+
+def show_intel_all(user_data, qu_data, text_frame):
+    sameness = ['Same', 'Similar', 'No analogues', 'False Friends']
+    fig, axes = plt.subplots(2, 2, figsize=(10, 10), num=4)
+    for i, same in enumerate(sameness):
+        print("\n----------\n", same, "\n----------")
+        showIntel(same, user_data, qu_data, text_frame, axes[int(i/2)][i%2], fig)
+    fig.savefig('img_res/Fig_5_all_correlation_on_type.png', dpi = 600)
+
 def showWords2(test_n, coef, word_type, thr, qu_data, text_frame):
     all_resn, all_tests = processIntelligibility(qu_data, text_frame)
     test_n = int(test_n) - 1
